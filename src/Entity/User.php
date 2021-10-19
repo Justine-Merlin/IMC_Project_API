@@ -9,8 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource]
+
+
+#[ApiResource(normalizationContext: ['groups' => ['user']])]
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,47 +25,56 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups("user")]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
+    #[Groups("user")]
     private $email;
 
     /**
      * @ORM\Column(type="json")
      */
+    #[Groups("user")]
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
+    #[Groups("user")]
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups("user")]
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups("user")]
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups("user")]
     private $gender;
 
     /**
      * @ORM\Column(type="integer")
      */
+    #[Groups("user")]
     private $heigth;
 
     /**
      * @ORM\OneToMany(targetEntity=Weigth::class, mappedBy="user", orphanRemoval=true)
      */
+    #[Groups("user")]
     private $weigths;
 
     public function __construct()

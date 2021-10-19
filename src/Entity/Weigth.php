@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Repository\WeigthRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-
-#[ApiResource]
+use Symfony\Component\Serializer\Annotation\Groups;
+#[ApiResource()]
 
 
 /**
@@ -19,16 +19,21 @@ class Weigth
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups("user")]
     private $id;
 
     /**
      * @ORM\Column(type="float")
      */
+    #[Groups("user")]
     private $user_weigth;
 
     /**
      * @ORM\Column(type="date")
+     *
      */
+    
+    #[Groups('user')]
     private $date;
 
     /**
